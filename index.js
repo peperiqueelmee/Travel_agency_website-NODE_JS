@@ -22,6 +22,9 @@ db.authenticate()
 //Port
 const PORT = process.env.PORT || 4000;
 
+//Add body parse to read form data 
+app.use(express.urlencoded({ extended: true }));
+
 //Add router
 app.use('/', router);
 
@@ -31,8 +34,6 @@ app.set('view engine', 'pug');
 //Public Folder
 app.use(express.static('public'));
 
-//Add body parse to read form data 
-app.use(express.urlencoded({ extended: true }));
 
 //Server execution
 app.listen(PORT, () => {
