@@ -1,0 +1,32 @@
+extends ./layout/index
+
+
+block content
+    main.container.mt-5 
+        h1.text-center.mt-5 #{pagina}
+
+        blockquote.text-center Lee sobre nuestros clientes y sus experiencias 
+        include ./layout/block_testimonials.pug
+
+        .row
+            .col-md-12
+                h2.d-block.w-100.text-center Agrega un Testimonial.
+
+                if(errors)
+                    each error in errors
+                        .alert.col.alert-danger.text-center= error.message
+            
+            .row.justify-content-center.col
+                .col.md-8 
+                    form(action="/testimoniales" method="POST")
+                        .form-group
+                            label(for="nombre") Nombre 
+                            input#nombre(type="text", placeholder="Tu Nombre", name="name", value=name, class="form-control")
+                        .form-group
+                            label(for="correo") Correo Electronico 
+                            input#correo(type="text", placeholder="Tu Correo", name="email" value=email , class="form-control")
+                        .form-group
+                            label(for="mensaje") Mensaje
+                            textarea#mensaje(placeholder="Tu Mensaje", name="message", class="form-control", rows=3)=message
+
+                        input.btn.btn-success.btn-block(type="submit")
