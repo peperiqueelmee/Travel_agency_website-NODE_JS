@@ -1,6 +1,7 @@
 import { Router } from "express"; 
 import {
-        indexPage, 
+        indexPage,
+        pageNotFound, 
         usPage, 
         travelsPage, 
         testimonialsPage,
@@ -23,6 +24,8 @@ router.get('/viajes/:slug',detailPageTravel);
 
 router.get('/testimoniales',testimonialsPage);
 router.post('/testimoniales', saveTestimonial);
+
+router.get('/*', pageNotFound);
 
 
 

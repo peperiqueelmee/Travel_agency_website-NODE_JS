@@ -25,15 +25,14 @@ const PORT = process.env.PORT || 4000;
 //Add body parse to read form data 
 app.use(express.urlencoded({ extended: true }));
 
-//Add router
-app.use('/', router);
-
 //Enable Pug
 app.set('view engine', 'pug');
 
 //Public Folder
 app.use(express.static('public'));
 
+//Routes
+app.use('/', router);
 
 //Server execution
 app.listen(PORT, () => {

@@ -73,6 +73,12 @@ const detailPageTravel = async (req, res) => {
     }
 }
 
+const pageNotFound = (req, res) => {
+    
+    res.render('page_not_foud',{
+        page: 'Pagina no encontrada'
+    });
+}
 
 
 export {
@@ -80,5 +86,6 @@ export {
     usPage,
     travelsPage,
     testimonialsPage,
-    detailPageTravel
+    detailPageTravel,
+    pageNotFound,
 }
