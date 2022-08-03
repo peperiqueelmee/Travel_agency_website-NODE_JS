@@ -6,7 +6,12 @@ const indexPage = async (req, res) => {
     const promiseDB = [];
 
     promiseDB.push(Viaje.findAll({ limit: 3 }));
-    promiseDB.push(Testimonial.findAll({ limit: 3 }))
+    promiseDB.push(Testimonial.findAll({
+        order: [
+            ['id', 'DESC']
+        ],
+        limit: 3
+    }));
 
     try {
         const result = await Promise.all(promiseDB);
@@ -43,7 +48,12 @@ const testimonialsPage = async (req, res) => {
 
     try {
 
-        const testimonials = await Testimonial.findAll({ limit: 3 });
+        const testimonials = await Testimonial.findAll({
+            order: [
+                ['id', 'DESC']
+            ],
+            limit: 3
+        });
 
         res.render('testimonials', {
             page: 'Testimoniales',
@@ -60,7 +70,7 @@ const testimonialsPage = async (req, res) => {
 const detailPageTravel = async (req, res) => {
 
     const { slug } = req.params;
-   
+
     try {
         const travel = await Viaje.findOne({ where: { slug } });
 
@@ -74,8 +84,8 @@ const detailPageTravel = async (req, res) => {
 }
 
 const pageNotFound = (req, res) => {
-    
-    res.render('page_not_foud',{
+
+    res.render('page_not_foud', {
         page: 'Pagina no encontrada'
     });
 }
